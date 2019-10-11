@@ -13,6 +13,7 @@ let ws = {
     // });
 
     socketio.on('connection', function(socket) {
+      console.log("ok!!")
       socket.on('chat message', function(msg) {
         console.warn('[WS] New chat message');
         socketio.emit('chat message', msg);
