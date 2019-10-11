@@ -1,0 +1,25 @@
+{
+  "name": "monsters-server",
+  "version": "0.0.1",
+  "description": "Server for multiplayer implementation",
+  "main": "app.js",
+  "scripts": {
+    "start": "reset && node app.js",
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n1xDev/monsters-server.git"
+  },
+  "author": "n1xDev (sn0wDev)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n1xDev/monsters-server/issues"
+  },
+  "homepage": "https://github.com/n1xDev/monsters-server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "log-timestamp": "^0.3.0",
+    "socket.io": "^2.3.0"
+  }
+}
