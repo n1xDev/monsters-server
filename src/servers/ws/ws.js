@@ -1,35 +1,17 @@
-const express = require('express')();
-const http = require('http').Server(express);
-var socketio = require('socket.io')(http);
-const cfg = require('../../consts/servers/ws.json');
-
-let ws = {
-  expressServer: null,
-  server: null,
-
-  run() {
-    // express.get('/', function(req, res) {
-    //   res.sendFile(__dirname + '/index.html');
-    // });
-
-    socketio.on('connection', function(socket) {
-      console.log("ok!!")
-      socket.on('chat message', function(msg) {
-        console.warn('[WS] New chat message');
-        socketio.emit('chat message', msg);
-      });
-      socket.on('disconnect', function (msg) {
-        console.warn('[WS] User disconnected');
-        socketio.emit('chat message', msg);
-      });
-    });
-    
-    http.listen(cfg["WS"]["PORT"], function(){
-      console.log('Express/http/socket.io are listening on: ' + cfg["WS"]["PORT"]);
-    });
-  }
-}
+const WebSocket = require('ws');
 
 module.exports = {
-  ws
+  ws: {
+    run() {
+      const wss = new WebSocket.Server({ port: 8080 });
+      
+      wss.on('connection', function connection(ws) {
+        ws.on('message', function incoming(message) {
+          console.log('received: %s', message);
+        });
+      
+        ws.send('something');
+      });
+    }
+  }
 }
